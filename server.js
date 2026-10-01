@@ -1,112 +1,68 @@
 const express = require("express");
-const session = require("express-session");
 const path = require("path");
+const session = require("express-session");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-const ADMIN_EMAIL =
-  process.env.ADMIN_EMAIL || "thallesytofc@gmail.com";
-
-const ADMIN_PASSWORD =
-  process.env.ADMIN_PASSWORD || "";
+const PORT = process.env.PORT || 10000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use(
   session({
-    secret:
-      process.env.SESSION_SECRET ||
-      "assistencia-tecnica-th-secret",
+    secret: process.env.SESSION_SECRET || "assistencia-th-secreta",
     resave: false,
     saveUninitialized: false,
     cookie: {
-      httpOnly: true,
-      sameSite: "lax",
-      secure: process.env.NODE_ENV === "production"
+      secure: false
     }
   })
 );
+
+// Arquivos do site
+app.use(express.static(path.join(__dirname)));
 
 // Página principal
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "index.html"));
 });
 
-// Arquivos do site
-app.use(express.static(__dirname));
+// Teste do servidor
+app.get("/health", (req, res) => {
+  res.status(200).send("OK");
+});
 
-// Login do administrador
-app.post("/api/admin/login", (req, res) => {
-  const { email, password } = req.body || {};
+// Rota de login
+app.post("/login", (req, res) => {
+  const { nome, email } = req.body;
 
-  if (
-    email === ADMIN_EMAIL &&
-    password === ADMIN_PASSWORD
-  ) {
-    req.session.admin = true;
+  if (!nome || !email) {
+    return res.status(400).json({
+      sucesso: false,
+      mensagem: "Nome e e-mail são obrigatórios."
+    });
+  }
 
+  // Login do administrador
+  if (email.toLowerCase() === "thallesytofc@gmail.com") {
     return res.json({
-      ok: true
+      sucesso: true,
+      admin: true,
+      mensagem: "Administrador identificado."
     });
   }
 
-  res.status(401).json({
-    ok: false,
-    message: "E-mail ou senha incorretos."
+  // Login normal do cliente
+  return res.json({
+    sucesso: true,
+    admin: false,
+    mensagem: "Cliente identificado."
   });
 });
 
-// Verificar login
-app.get("/api/admin/status", (req, res) => {
-  res.json({
-    admin: !!req.session.admin
-  });
-});
-
-// Sair
-app.post("/api/admin/logout", (req, res) => {
-  req.session.destroy(() => {
-    res.json({ ok: true });
-  });
-});
-
-// Agendamentos
-const bookings = [];
-
-app.post("/api/bookings", (req, res) => {
-  const booking = {
-    id: Date.now(),
-    ...req.body,
-    status: "Pendente",
-    createdAt: new Date().toISOString()
-  };
-
-  bookings.push(booking);
-
-  console.log("NOVO AGENDAMENTO:");
-  console.log(booking);
-
-  res.json({
-    ok: true,
-    booking
-  });
-});
-
-// Painel administrativo
-app.get("/api/bookings", (req, res) => {
-  if (!req.session.admin) {
-    return res.status(401).json({
-      ok: false
-    });
-  }
-
-  res.json(bookings);
-});
-
-app.listen(PORT, () => {
-  console.log(
-    `Assistência Técnica TH funcionando na porta ${PORT}`
-  );
+// Inicialização
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Servidor funcionando na porta ${PORT}`);
+  console.log(`Servidor disponível em 0.0.0.0:${PORT}`);
 });
