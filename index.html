@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assistência Técnica TH</title>
+<style>
+:root{--bg:#07090d;--card:#10141c;--text:#f5f7fb;--muted:#9aa5b5;--neon:#00f5ff;--pink:#ff2bd6;--green:#25f58b}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at 20% 10%,#112331 0,transparent 32%),radial-gradient(circle at 85% 20%,#2a102d 0,transparent 30%),var(--bg);color:var(--text)}
+header{position:sticky;top:0;z-index:10;background:#07090de8;backdrop-filter:blur(12px);border-bottom:1px solid #ffffff14}
+nav{max-width:1100px;margin:auto;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;gap:15px}.logo{font-family:cursive;font-size:34px;font-weight:900;color:var(--neon);text-shadow:0 0 10px var(--neon),0 0 25px #00f5ff55}.brand{font-weight:800}.brand small{display:block;color:#fff;font-size:11px;letter-spacing:2px}
+button,.btn{border:0;border-radius:12px;padding:12px 17px;background:linear-gradient(90deg,var(--neon),#8a7dff);color:#001015;font-weight:800;cursor:pointer;box-shadow:0 0 18px #00f5ff33;text-decoration:none;display:inline-block}.ghost{background:#ffffff0b;color:#fff;border:1px solid #ffffff18;box-shadow:none}
+main{max-width:1100px;margin:auto;padding:45px 20px}.hero{min-height:72vh;display:grid;place-items:center;text-align:center}.hero h1{font-size:clamp(42px,8vw,78px);margin:12px 0;line-height:.95}.glow{color:var(--neon);text-shadow:0 0 12px #00f5ff88}.hero p{max-width:650px;margin:20px auto;color:var(--muted);font-size:18px;line-height:1.6}.actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+section{padding:55px 0}.title{text-align:center;margin-bottom:28px}.title h2{font-size:34px;margin:5px}.title p{color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px}.card{background:linear-gradient(145deg,#121822,#0b0e14);border:1px solid #ffffff12;border-radius:20px;padding:24px;box-shadow:0 12px 40px #0008}.card h3{margin-top:0}.icon{font-size:34px}.card p{color:var(--muted);line-height:1.5}
+.formbox{max-width:720px;margin:auto}.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}.field{margin-bottom:14px}.field label{display:block;margin-bottom:7px;color:#cbd3df;font-size:14px}.field input,.field select,.field textarea{width:100%;padding:13px;border-radius:11px;border:1px solid #ffffff18;background:#080b10;color:#fff;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--neon);box-shadow:0 0 0 3px #00f5ff14}.field textarea{min-height:110px;resize:vertical}
+.notice{padding:13px 15px;border-radius:12px;background:#00f5ff0d;border:1px solid #00f5ff25;color:#c9faff;margin-bottom:15px;display:none}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}.tabs button.active{outline:2px solid var(--neon)}
+.admin{display:none}.admin-item{display:flex;justify-content:space-between;gap:15px;align-items:center;border-bottom:1px solid #ffffff12;padding:16px 0}.status{padding:6px 9px;border-radius:999px;background:#ffffff12;font-size:12px}
+footer{text-align:center;padding:35px 20px;color:#697586;border-top:1px solid #ffffff0d}.wa{background:#18d979;color:#001b0e;box-shadow:0 0 20px #18d97944}
+.modal{position:fixed;inset:0;background:#000b;display:none;place-items:center;padding:20px;z-index:30}.modal.show{display:grid}.modalbox{width:min(460px,100%);background:#10141c;border:1px solid #ffffff18;border-radius:22px;padding:25px}
+@media(max-width:650px){.row{grid-template-columns:1fr}nav{padding:12px 15px}.brand{display:none}.hero{min-height:65vh}main{padding:30px 15px}.admin-item{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<header><nav><div style="display:flex;align-items:center;gap:10px"><div class="logo">TH</div><div class="brand">ASSISTÊNCIA TÉCNICA<small>CELULARES • SMARTPHONES</small></div></div><div style="display:flex;gap:8px"><button class="ghost" onclick="openModal('login')">Entrar</button><a class="btn" href="#agendar">Agendar</a></div></nav></header>
+
+<main>
+<section class="hero">
+<div>
+<div class="logo" style="font-size:58px">TH</div>
+<h1>Seu celular em<br><span class="glow">boas mãos.</span></h1>
+<p>Assistência técnica para celulares com atendimento rápido, orçamento e agendamento online.</p>
+<div class="actions"><a class="btn" href="#agendar">Solicitar orçamento</a><a class="btn wa" target="_blank" href="https://wa.me/5569981038739?text=Olá%2C%20quero%20agendar%20um%20serviço%20na%20Assistência%20Técnica%20TH.">WhatsApp</a></div>
+</div>
+</section>
+
+<section id="servicos"><div class="title"><h2>Serviços</h2><p>Escolha o atendimento que você precisa.</p></div>
+<div class="grid">
+<div class="card"><div class="icon">📱</div><h3>Troca de tela</h3><p>Substituição de telas danificadas e avaliação do aparelho.</p></div>
+<div class="card"><div class="icon">🔋</div><h3>Bateria</h3><p>Diagnóstico e troca de bateria com avaliação do consumo.</p></div>
+<div class="card"><div class="icon">🔌</div><h3>Conector de carga</h3><p>Problemas de carregamento, mau contato e limpeza técnica.</p></div>
+<div class="card"><div class="icon">🛠️</div><h3>Diagnóstico</h3><p>Análise de falhas, travamentos e outros problemas.</p></div>
+</div></section>
+
+<section id="agendar"><div class="title"><h2>Orçamento e agendamento</h2><p>Preencha os dados. O pedido fica registrado neste navegador.</p><div id="clientState" style="color:#9aa5b5;font-size:13px;margin-top:8px"></div></div>
+<div class="formbox card">
+<div id="notice" class="notice"></div>
+<form id="booking">
+<div class="row"><div class="field"><label>Nome completo *</label><input id="nome" required></div><div class="field"><label>E-mail *</label><input id="email" type="email" required></div></div>
+<div class="row"><div class="field"><label>WhatsApp</label><input id="telefone" placeholder="(69) 99999-9999"></div><div class="field"><label>Aparelho *</label><input id="aparelho" placeholder="Ex.: iPhone 13" required></div></div>
+<div class="row"><div class="field"><label>Serviço *</label><select id="servico" required><option value="">Selecione</option><option>Troca de tela</option><option>Troca de bateria</option><option>Conector de carga</option><option>Diagnóstico</option><option>Outro</option></select></div><div class="field"><label>Data desejada</label><input id="data" type="date"></div></div>
+<div class="field"><label>Descreva o problema</label><textarea id="problema" placeholder="Conte o que aconteceu com o aparelho..."></textarea></div>
+<button type="submit">Enviar solicitação</button>
+<a id="whats" class="btn wa" style="margin-left:8px" target="_blank">Enviar pelo WhatsApp</a>
+</form></div></section>
+
+<section id="sobre"><div class="title"><h2>Atendimento TH</h2><p>Orçamento antes do serviço e acompanhamento do seu pedido.</p></div></section>
+
+<section id="painel" class="admin"><div class="title"><h2>Painel administrativo</h2><p>Solicitações salvas neste navegador.</p></div><div class="card"><div class="tabs"><button class="active" onclick="filterAdmin('todos',this)">Todos</button><button class="ghost" onclick="filterAdmin('Pendente',this)">Pendentes</button><button class="ghost" onclick="filterAdmin('Concluído',this)">Concluídos</button></div><div id="orders"></div><button class="ghost" onclick="logout()">Sair do painel</button></div></section>
+</main>
+
+<footer>Assistência Técnica TH • Atendimento pelo WhatsApp: (69) 98103-8739</footer>
+
+<div class="modal" id="login"><div class="modalbox"><h2>Entrar</h2>
+<p id="loginHelp" style="color:#9aa5b5">Digite seu e-mail para continuar.</p>
+<div class="field"><label>E-mail</label><input id="loginEmail" type="email" autocomplete="email"></div>
+<div id="adminPasswordBox" style="display:none">
+<div class="field"><label>Senha do administrador</label><input id="loginPass" type="password" autocomplete="current-password"></div>
+</div>
+<button onclick="login()">Continuar</button> <button class="ghost" onclick="closeModal('login')">Cancelar</button>
+<p id="loginResult" style="color:#9aa5b5;font-size:13px"></p>
+</div></div>
+
+<script>
+let filter="todos";
+
+function openModal(id){document.getElementById(id).classList.add("show")}
+function closeModal(id){document.getElementById(id).classList.remove("show")}
+function getOrders(){return JSON.parse(localStorage.getItem("th_orders")||"[]")}
+(function(){
+ const ce=localStorage.getItem("th_cliente_email");
+ if(ce){document.getElementById("clientState").textContent="Cliente conectado: "+ce;document.getElementById("email").value=ce;}
+})();
+function saveOrders(x){localStorage.setItem("th_orders",JSON.stringify(x))}
+function showNotice(msg){const n=document.getElementById("notice");n.textContent=msg;n.style.display="block";setTimeout(()=>n.style.display="none",6000)}
+
+document.getElementById("booking").addEventListener("submit",e=>{
+ e.preventDefault();
+ const o={id:Date.now(),nome:nome.value,email:email.value,telefone:telefone.value,aparelho:aparelho.value,servico:servico.value,data:data.value,problema:problema.value,status:"Pendente"};
+ const orders=getOrders();orders.push(o);saveOrders(orders);
+ fetch("/api/bookings",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(o)}).catch(()=>{});
+ showNotice("Solicitação enviada. Para atendimento imediato, use o WhatsApp.");
+ document.getElementById("whats").href=makeWhats(o);
+ e.target.reset();
+});
+function makeWhats(o){
+ const msg=`Olá, Assistência Técnica TH!%0A%0AQuero solicitar um orçamento/agendamento.%0A%0ANome: ${encodeURIComponent(o.nome)}%0AE-mail: ${encodeURIComponent(o.email)}%0AAparelho: ${encodeURIComponent(o.aparelho)}%0AServiço: ${encodeURIComponent(o.servico)}%0AData desejada: ${encodeURIComponent(o.data||"A combinar")}%0AProblema: ${encodeURIComponent(o.problema||"Não informado")}`;
+ return "https://wa.me/5569981038739?text="+msg;
+}
+document.getElementById("whats").addEventListener("click",()=>{
+ const f=document.getElementById("booking");
+ if(!f.checkValidity()){f.reportValidity();return}
+ const o={nome:nome.value,email:email.value,telefone:telefone.value,aparelho:aparelho.value,servico:servico.value,data:data.value,problema:problema.value};
+ document.getElementById("whats").href=makeWhats(o);
+});
+
+loginEmail.addEventListener("input",()=>{
+ const isAdmin=loginEmail.value.trim().toLowerCase()==="thallesytofc@gmail.com";
+ adminPasswordBox.style.display=isAdmin?"block":"none";
+ loginHelp.textContent=isAdmin?"E-mail do administrador detectado. Agora informe a senha.":"Cliente: não é necessário informar senha.";
+ loginPass.value=""; loginResult.textContent="";
+});
+async function login(){
+ const e=loginEmail.value.trim().toLowerCase();
+ if(!e){loginResult.textContent="Digite um e-mail válido.";return}
+ if(e==="thallesytofc@gmail.com"){
+   if(!loginPass.value){loginResult.textContent="Digite a senha do administrador.";return}
+   try{
+     const r=await fetch("/api/admin/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({email:e,password:loginPass.value})});
+     if(!r.ok) throw new Error();
+     closeModal("login");document.getElementById("painel").style.display="block";
+     document.getElementById("painel").scrollIntoView({behavior:"smooth"});renderAdmin();
+   }catch(err){loginResult.textContent="Não foi possível entrar no painel. Verifique os dados ou se o servidor está configurado."}
+ }else{
+   localStorage.setItem("th_cliente_email",e); closeModal("login");
+   document.getElementById("agendar").scrollIntoView({behavior:"smooth"});
+   document.getElementById("email").value=e;
+   showNotice("Login de cliente realizado. Você pode solicitar seu orçamento ou agendamento.");
+ }
+}
+function logout(){document.getElementById("painel").style.display="none"}
+function filterAdmin(x,b){filter=x;document.querySelectorAll(".tabs button").forEach(q=>q.classList.add("ghost"));b.classList.remove("ghost");renderAdmin()}
+function renderAdmin(){
+ const box=document.getElementById("orders"), data=getOrders().filter(o=>filter==="todos"||o.status===filter);
+ if(!data.length){box.innerHTML='<p style="color:#8d98a8">Nenhuma solicitação encontrada.</p>';return}
+ box.innerHTML=data.map(o=>`<div class="admin-item"><div><b>${esc(o.nome)}</b><br><span style="color:#9aa5b5">${esc(o.aparelho)} • ${esc(o.servico)} • ${esc(o.email)}</span><br><small>${esc(o.problema||"Sem descrição")}</small></div><div><span class="status">${o.status}</span><br><button style="margin-top:8px;padding:8px" onclick="done(${o.id})">Concluir</button></div></div>`).join("");
+}
+function done(id){const a=getOrders();const o=a.find(x=>x.id===id);if(o)o.status="Concluído";saveOrders(a);renderAdmin()}
+function esc(s){return String(s||"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+</script>
+</body>
+</html>
